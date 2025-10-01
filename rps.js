@@ -20,7 +20,21 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
+    // humanChoice = humanChoice.toLowerCase();
 
-}
-// console.log(getHumanChoice());
-// console.log('Hello World');
+    humanChoice = getHumanChoice().toLowerCase();
+    computerChoice = getComputerChoice().toLowerCase();
+
+    if(humanChoice === computerChoice) {
+        console.log("Draw! Try Again")
+    } else (
+        humanChoice === "rock" && computerChoice === "paper"); 
+        {
+            console.log("Computer Wins! Paper beats Rock");
+            computerScore++;
+        }
+    
+    return console.log({humanChoice, computerChoice})
+    }
+
+playRound();
