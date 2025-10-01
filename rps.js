@@ -11,5 +11,16 @@ function getComputerChoice() {
     return selected;
     }
 
-    console.log(getComputerChoice());
+function getHumanChoice() {
+    human = prompt("Select one between Rock, Paper and Scissors:");
+    return human.toLowerCase();
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+
+}
+// console.log(getHumanChoice());
 // console.log('Hello World');
