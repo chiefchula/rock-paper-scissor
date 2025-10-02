@@ -1,3 +1,5 @@
+// Code for playing Rock-Paper-Scissors in console.
+
 function getComputerChoice() {
     let picked = Math.random();
     if(picked >= 0 && picked <= 0.33) {
@@ -64,7 +66,7 @@ function playRound(humanChoice, computerChoice) {
         
         
         else {
-            console.log("Check error!")                                 // if the function runs correctly, this code block should not runs. It's a fall back to detect errors in the execution of the different conditions
+            console.log("Check error!")                                 // if the function runs correctly, this code block should never runs. If it does, there is a logic error in the condition which need to be checked. 
         }
     
     return console.log({humanChoice, computerChoice, humanScore, computerScore});
