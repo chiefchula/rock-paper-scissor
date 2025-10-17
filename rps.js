@@ -1,4 +1,12 @@
 // Code for playing Rock-Paper-Scissors in console.
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
+const totalRounds = 5;
+
+const resultDisplay = document.querySelector("#result");
+const scoreDisplay = document.querySelector("#score");
+const messageDisplay = document.querySelector("#winner");
 
 function getComputerChoice() {
     let picked = Math.random();
@@ -13,28 +21,11 @@ function getComputerChoice() {
     return selected.toLowerCase();
     }
 
-function getHumanChoice() {
-    // human = prompt("Select one between Rock, Paper and Scissors:");
-    if(document.querySelector('#rock')) {
-        return "rock";
-    } else if(
-        document.querySelector('#paper')) {
-            return "paper"
-        } else {
-            return "scissors";
-        }
-    // ) )
-    // return human.toLowerCase();
-}
-
-let humanScore = 0;
-let computerScore = 0;
-
-const resultDisplay = document.querySelector("#result");
-const scoreDisplay = document.querySelector("#score");
 
 
 function playRound(humanChoice, computerChoice) {
+    let message;
+
     if(humanChoice === computerChoice) {
         message = `Draw! Play Again! Both selected ${humanChoice}`;
     } else if (
@@ -53,19 +44,34 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-
 function playGame(humanChoice) {
+    if(round >= totalRounds) {
+        messageDisplay.textContent = "Game Over! Refresh to play again";
+        return;
+    }
+
     const computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
+    round++;
+
+    if (round === totalRounds) {
+        displayWinner();
+    }
 }
+
+function displayWinner() {
+    if (humanScore > computerScore) {
+        messageDisplay.textContent = `Human wins the game! Final score! Human: ${humanScore} - ${computerScore} Computer`
+    } else if (computerScore > humanScore) {
+        messageDisplay.textContent = `Computer wins the game! Final Score! Human: ${humanScore} - ${computerScore} Computer`
+    } else {
+        messageDisplay.textContent = `It's a draw! Final Score: Human: ${humanScore} - ${computerScore} Computer`
+    }
+}
+
+
+
 
 document.querySelector("#rock").addEventListener("click", () => playGame("rock"));
 document.querySelector("#paper").addEventListener("click", () => playGame("paper"));
 document.querySelector("#scissors").addEventListener("click", () => playGame("scissors"));
-
-
-
-
-
-
-
