@@ -21,7 +21,11 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
+
+
+
+function playGame(n = 5) {
+    function playRound(humanChoice, computerChoice) {
     // humanChoice = humanChoice.toLowerCase();
 
     humanChoice = getHumanChoice().toLowerCase();                       //get the human choice from the defined getHumanChoice funtion
@@ -73,3 +77,7 @@ function playRound(humanChoice, computerChoice) {
     }
 
 playRound();
+}
+
+playGame();
+
