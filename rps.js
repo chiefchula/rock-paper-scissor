@@ -10,74 +10,56 @@ function getComputerChoice() {
         selected = "Scissors";
     }
     // return picked;
-    return selected;
+    return selected.toLowerCase();
     }
 
 function getHumanChoice() {
-    human = prompt("Select one between Rock, Paper and Scissors:");
-    return human.toLowerCase();
+    // human = prompt("Select one between Rock, Paper and Scissors:");
+    if(document.querySelector('#rock')) {
+        return "rock";
+    } else if(
+        document.querySelector('#paper')) {
+            return "paper"
+        } else {
+            return "scissor";
+        }
+    // ) )
+    // return human.toLowerCase();
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
 
-
-
-function playGame(n = 5) {
-    function playRound(humanChoice, computerChoice) {
-    // humanChoice = humanChoice.toLowerCase();
-
-    humanChoice = getHumanChoice().toLowerCase();                       //get the human choice from the defined getHumanChoice funtion
-    computerChoice = getComputerChoice().toLowerCase();                 //get the computer choice from the defined getComputerChoice funtion
-
+function playRound(humanChoice, computerChoice) {
     if(humanChoice === computerChoice) {
-        console.log("Draw! Try Again")                                  // first condition is to capture all draws. No counter
-        } else if(
-            humanChoice === "rock" && computerChoice === "paper")       // for ease of debugging all condition start with human, then computer. 3 computer wins, 3 human wins
-                                                                        // condition 1 - start of computer wins
-        {
-            console.log("Computer Wins! Paper beats Rock");
-            computerScore++;
-        } else if(
-            humanChoice === "paper" && computerChoice === "scissors")   // conditon 2
-        {
-            console.log("Computer wins! Scissors beats Paper!" );
-            computerScore++;
-        } else if(
-            humanChoice === "scissors" && computerChoice === "rock")    // condition 3 - end of computer wins
-        {
-            console.log("Computer Wins! Rock bears Scissors");
-            computerScore++;
-        } else if(
-            humanChoice === "paper" && computerChoice === "rock")       // condition 4 - start of human wins
-        {
-            console.log("Human Wins! Paper beats Rock");
-            humanScore++;
-        } else if(
-            humanChoice === "scissors" && computerChoice === "paper")   // condition 5
-        {
-            console.log("Human Wins! Scissors beats paper")
-            humanScore++;
-        } else if(
-            humanChoice === "rock" && computerChoice === "scissors")    // condition 6 - end of humab wins
-            
-            {
-                console.log("Human Wins! Rock Beats Scissors");         
-                humanScore++;
-            }
-        
-        
-        
-        else {
-            console.log("Check error!")                                 // if the function runs correctly, this code block should never runs. If it does, there is a logic error in the condition which need to be checked. 
-        }
-    
-    return console.log({humanChoice, computerChoice, humanScore, computerScore});
+        console.log("Draw! Play Again");
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissor" && computerChoice === "paper")
+    ) {
+        console.log(`You Win! ${humanChoice} beats ${computerChoice}.`);
+        humanScore++;
+    } else {
+        console.log(`Computer Wins! ${computerChoice} beats ${humanChoice}.`);
+        computerScore++;
     }
-
-playRound();
+    console.log({humanScore, computerScore});
 }
 
-playGame();
+
+
+function playGame(humanChoice) {
+    const computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+}
+
+document.querySelector("#rock").addEventListener("click", () => playGame("rock"));
+document.querySelector("#paper").addEventListener("click", () => playGame("paper"));
+document.querySelector("#scissor").addEventListener("click", () => playGame("scissor"));
+
+
+
+
 
